@@ -1,44 +1,5 @@
-const TIMES = ['12:00', '13:00', '14:00'];
-const TYPES = ['palace', 'flat', 'house', 'bungalow', 'hotel'];
-const PHOTOS = [
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg',
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg',
-];
-const FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
-
-const LNG_BOUNDS = {
-  MIN: 139.70000,
-  MAX: 139.80000,
-};
-
-const LAT_BOUNDS = {
-  MIN: 35.65000,
-  MAX: 35.70000,
-};
-
-const getRandomInteger = (from, to) => {
-  if (from === to) {
-    return;
-  }
-
-  if (from >= to || from < 0) {
-    return;
-  }
-
-  return Math.floor(from + Math.random() * (to - from + 1));
-};
-
-const getRandomFloatNumber = (from, to, precision) => {
-  if (from >= to || from < 0) {
-    return from;
-  }
-
-  const randomNumber = from + Math.random() * (to - from);
-  return parseFloat(randomNumber.toFixed(precision));
-};
-
-// временные данные
+import {getRandomInteger, getRandomFloatNumber} from './util';
+import {TIMES, TYPES, PHOTOS, LNG_BOUNDS, LAT_BOUNDS, FEATURES} from './data';
 
 const getRandomAvatar = () => `img/avatars/user0${getRandomInteger(1, 8)}.png`;
 
