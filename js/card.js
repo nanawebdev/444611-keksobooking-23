@@ -1,8 +1,8 @@
-import {createAdvertisement} from './main.js';
+import {createAdvertisement} from './setup.js';
 
-const sectionMap = document.queruSelector('.map');
-// const popup = document.queruSelector('.popup');
-const cardTemplate = document.querySelector('#card');
+const sectionMap = document.querySelector('.map');
+
+const cardTemplate = document.querySelector('#card').content.querySelector('.popup');
 
 const similarAdvertisements = createAdvertisement();
 
@@ -13,5 +13,3 @@ similarAdvertisements.forEach((ads) => {
   advertisementElement.queruSelector('.popup__text--price').textContent = ads.price;
   sectionMap.appendChild(advertisementElement);
 });
-
-
