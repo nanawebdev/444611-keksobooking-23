@@ -53,8 +53,8 @@ const createAdvertisement = () => {
   };
 };
 
-// const objectGenerator = new Array(10).fill(null).map(createAdvertisement);
+const advertisements = new Array(10).fill(null).map(createAdvertisement);
 
 // objectGenerator;
 
-export {createAdvertisement};
+export {advertisements};
