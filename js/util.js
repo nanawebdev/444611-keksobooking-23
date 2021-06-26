@@ -1,8 +1,6 @@
-import {forEach} from 'lodash';
-
 const getRandomInteger = (from, to) => {
   if (from === to) {
-    return;
+    return from;
   }
 
   if (from >= to || from < 0) {
@@ -41,14 +39,4 @@ const getOrdinal = (num, ordinals) => {
   return ordinals[2];
 };
 
-const getActiveFeatures = (features) => {
-  const allFeatures = document.querySelectorAll('.popup__feature');
-  allFeatures.forEach((feature) => {
-    feature.classList.add('hidden');
-    const elemClasses = feature.classList;
-    console.log(elemClasses);
-  });
-  getActiveFeatures(advertisements);
-
-};
-export { getRandomInteger, getRandomFloatNumber, getOrdinal,getActiveFeatures};
+export { getRandomInteger, getRandomFloatNumber, getOrdinal };
