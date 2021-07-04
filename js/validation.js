@@ -81,3 +81,19 @@ const onRoomQuantityChange = () => {
 onRoomQuantityChange();
 
 roomQuantity.addEventListener('change', onRoomQuantityChange);
+
+const timeinSelect = document.querySelector('#timein');
+const timeoutSelect = document.querySelector('#timeout');
+
+const onTimeinSelectChange = () => {
+  timeoutSelect.value = timeinSelect.value;
+};
+
+const onTimeoutSelectChange = () => {
+  timeinSelect.value = timeoutSelect.value;
+};
+
+onTimeinSelectChange();
+onTimeoutSelectChange();
+timeinSelect.addEventListener('change', onTimeinSelectChange);
+timeoutSelect.addEventListener('change', onTimeoutSelectChange);
