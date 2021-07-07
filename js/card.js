@@ -1,7 +1,4 @@
-import { advertisements } from './setup.js';
 import { getOrdinal } from './util.js';
-
-const map = document.querySelector('#map-canvas');
 
 const cardTemplate = document.querySelector('#card').content.querySelector('.popup');
 
@@ -40,7 +37,7 @@ const offerTypesDict = {
   'hotel' : 'Отель',
 };
 
-advertisements.forEach((ads) => {
+export function createPopup(ads) {
   const advertisementElement = cardTemplate.cloneNode(true);
   advertisementElement.querySelector('.popup__title').textContent = ads.offer.title;
   advertisementElement.querySelector('.popup__text--address').textContent = ads.offer.address;
@@ -54,5 +51,6 @@ advertisements.forEach((ads) => {
   advertisementElement.querySelector('.popup__description').textContent = ads.offer.description;
   advertisementElement.querySelector('.popup__avatar').src = ads.author.avatar;
   renderPhotos(advertisementElement, ads.offer.photos);
-  map.appendChild(advertisementElement);
-});
+
+  return advertisementElement;
+}

@@ -1,6 +1,3 @@
-import './card.js';
-import { disableForm, enableForm } from './form.js';
+import './form.js';
 import './validation.js';
-
-disableForm();
-enableForm();
+import './map.js';

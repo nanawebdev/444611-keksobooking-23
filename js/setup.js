@@ -34,7 +34,7 @@ const createAdvertisement = () => {
       avatar: getRandomAvatar(),
     },
     offer: {
-      title: 'Самая чудная квартира в Эхо',
+      title: 'Уютная квартира в центре Токио',
       address: `${randomLat}, ${randomLng}`,
       price: getRandomInteger(25000, 100000),
       type: getRandomArrayElement(TYPES),
@@ -43,7 +43,7 @@ const createAdvertisement = () => {
       checkin: getRandomArrayElement(TIMES),
       checkout: getRandomArrayElement(TIMES),
       features: getRandomArrayElements(FEATURES),
-      description: 'Здесь когда то проживал сэр Макс',
+      description: 'Виды из окна идеальны для съемки сторис',
       photos: getRandomArrayElements(PHOTOS),
     },
     location: {
@@ -54,7 +54,5 @@ const createAdvertisement = () => {
 };
 
 const advertisements = new Array(10).fill(null).map(createAdvertisement);
-
-// objectGenerator;
 
 export {advertisements};
