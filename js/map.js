@@ -1,9 +1,28 @@
 import { enableForm, disableForm } from './form.js';
+import { advertisements } from './setup.js';
+import { createPopup } from './card.js';
+
+const addressInput = document.querySelector('#address');
 
 disableForm();
 
-const map = L.map('map-canvas').on('load', () => { enableForm(); }).setView([35.6895, 139.69171], 13);
+const TOKYO = {
+  lat: 35.67833,
+  lng: 139.75114,
+};
 
+const valuesTokyo = Object.values(TOKYO).join(', ');
+
+const map = L
+  .map('map-canvas')
+  .on('load', () => {
+    enableForm();
+    addressInput.value = valuesTokyo;
+  })
+  .setView({
+    lat: TOKYO.lat,
+    lng: TOKYO.lng,
+  }, 12);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
@@ -15,27 +34,40 @@ const pinIcon = L.icon({
   iconAnchor: [26, 52],
 });
 
-const marker = L.marker({
-  lat: 35.6895,
-  lng: 139.69171,
+const mainPin = L.marker({
+  lat: TOKYO.lat,
+  lng: TOKYO.lng,
 },
 {
   draggable: true,
-},
-{ icon: pinIcon,
+  icon: pinIcon,
 });
 
-marker.addTo(map);
+mainPin.addTo(map);
 
-// marker.on('moveend', (evt) => {
-//   console.log(evt.target.getLatLng());
-// });
+mainPin.on('moveend', (evt) => {
+  const latLng = evt.target.getLatLng();
+  const lat = latLng.lat;
+  const lng = latLng.lng;
+  addressInput.value = `${lat.toFixed(5)} ${lng.toFixed(5)}`;
+});
 
-const popup = L.popup();
+const commonPinIcon = L.icon({
+  iconUrl: './../img/pin.svg',
+  iconSize: [52, 52],
+  iconAnchor: [26, 52],
+});
 
-function onMarkerClick() {
-  popup.setLatLng([35.6895, 139.69171]).setContent('Я родился!').openOn(map);
-}
-
-marker.on('click', onMarkerClick);
-
+advertisements.forEach((advert) => {
+  const lat = advert.location.lat;
+  const lng = advert.location.lng;
+  L.marker({
+    lat: lat,
+    lng: lng,
+  },
+  {
+    icon: commonPinIcon,
+  })
+    .bindPopup(createPopup(advert))
+    .addTo(map);
+});
