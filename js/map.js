@@ -67,6 +67,7 @@ advertisements.forEach((advert) => {
   },
   {
     icon: commonPinIcon,
+    keepInView: true,
   })
     .bindPopup(createPopup(advert))
     .addTo(map);
