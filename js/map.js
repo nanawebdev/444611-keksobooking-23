@@ -1,17 +1,14 @@
-import { enableForm, disableForm } from './form.js';
-import { advertisements } from './setup.js';
-import { createPopup } from './card.js';
-
-const addressInput = document.querySelector('#address');
-
-disableForm();
-
+import { enableForm, disableForm } from './formHelpers.js';
+// import { advertisements } from './setup.js';
+// import { createPopup } from './card.js';
 const TOKYO = {
   lat: 35.67833,
   lng: 139.75114,
 };
-
+const addressInput = document.querySelector('#address');
 const valuesTokyo = Object.values(TOKYO).join(', ');
+
+disableForm();
 
 const map = L
   .map('map-canvas')
@@ -52,23 +49,36 @@ mainPin.on('moveend', (evt) => {
   addressInput.value = `${lat.toFixed(5)} ${lng.toFixed(5)}`;
 });
 
-const commonPinIcon = L.icon({
-  iconUrl: './../img/pin.svg',
-  iconSize: [52, 52],
-  iconAnchor: [26, 52],
-});
+const resetMap = () => {
+  mainPin.setLatLng({
+    lat: TOKYO.lat,
+    lng: TOKYO.lng,
+  });
+  map.setView({
+    lat: TOKYO.lat,
+    lng: TOKYO.lng,
+  }, 12);
+};
 
-advertisements.forEach((advert) => {
-  const lat = advert.location.lat;
-  const lng = advert.location.lng;
-  L.marker({
-    lat: lat,
-    lng: lng,
-  },
-  {
-    icon: commonPinIcon,
-    keepInView: true,
-  })
-    .bindPopup(createPopup(advert))
-    .addTo(map);
-});
+// const commonPinIcon = L.icon({
+//   iconUrl: './../img/pin.svg',
+//   iconSize: [52, 52],
+//   iconAnchor: [26, 52],
+// });
+
+// advertisements.forEach((advert) => {
+//   const lat = advert.location.lat;
+//   const lng = advert.location.lng;
+//   L.marker({
+//     lat: lat,
+//     lng: lng,
+//   },
+//   {
+//     icon: commonPinIcon,
+//     keepInView: true,
+//   })
+//     .bindPopup(createPopup(advert))
+//     .addTo(map);
+// });
+
+export { resetMap };

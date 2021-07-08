@@ -1,43 +1,39 @@
-const adForm = document.querySelector('.ad-form');
-const adFormFieldsets = adForm.querySelectorAll('fieldset');
-const mapFilters = document.querySelector('.map__filters');
-const mapFiltersSelects = mapFilters.querySelectorAll('select');
-const mapFiltersFieldsets = mapFilters.querySelectorAll('fieldset');
+import { showSuccessPopup, showErrorPopup  } from './resultsPopup.js';
+import { resetMap } from './map.js';
+import { resetForm } from './formHelpers.js';
+import { resetFilters } from './mapFilters.js';
 
-const disableForm = () => {
-  adForm.classList.add('ad-form--disabled');
+const form = document.querySelector('.ad-form');
+const clearFormButton = document.querySelector('.ad-form__reset');
 
-  adFormFieldsets.forEach((element) => {
-    element.setAttribute('disabled', 'disabled');
-  });
-  mapFilters.classList.add('map__filters--disabled');
+form.addEventListener('submit', (evt) => {
+  evt.preventDefault();
 
-  mapFiltersSelects.forEach((element) => {
-    element.setAttribute('disabled', 'disabled');
-  });
+  const formData = new FormData(evt.target);
 
+  fetch('https://23.javascript.pages.academy/keksobooking', {
+    method: 'POST',
+    body: formData,
+  },
+  )
+    .then((response) => {
+      if (response.ok) {
+        showSuccessPopup();
+        resetForm();
+        resetMap();
+        resetFilters();
+      } else {
+        showErrorPopup();
+      }
+    })
+    .catch(() => {
+      showErrorPopup();
+    });
+});
 
-  mapFiltersFieldsets.forEach((element) => {
-    element.setAttribute('disabled', 'disabled');
-  });
-};
+clearFormButton.addEventListener('click', resetForm);
 
-const enableForm = () => {
-  adForm.classList.remove('ad-form--disabled');
-
-  adFormFieldsets.forEach((element) => {
-    element.removeAttribute('disabled', 'disabled');
-  });
-
-  mapFilters.classList.remove('map__filters--disabled');
-
-  mapFiltersSelects.forEach((element) => {
-    element.removeAttribute('disabled', 'disabled');
-  });
-
-  mapFiltersFieldsets.forEach((element) => {
-    element.removeAttribute('disabled', 'disabled');
-  });
-};
-
-export {disableForm, enableForm};
+// fetch('https://23.javascript.pages.academy/keksobooking/data')
+//   .then((response) => response.json())
+//   .then((advertisments) => {
+//   });
