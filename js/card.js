@@ -2,32 +2,31 @@ import { getOrdinal } from './util.js';
 
 const cardTemplate = document.querySelector('#card').content.querySelector('.popup');
 
-const renderFeatures = (advertisementElement, features) => {
-  const featureElements = advertisementElement.querySelectorAll('.popup__feature');
+// const renderFeatures = (advertisementElement, features) => {
+//   const featureElements = advertisementElement.querySelectorAll('.popup__feature');
 
-  featureElements.forEach((element) => {
-    element.classList.add('hidden');
-  });
+//   featureElements.forEach((element) => {
+//     element.classList.add('hidden');
+//   });
 
-  features.forEach((element) => {
-    advertisementElement.querySelector(`.popup__feature--${element}`).classList.remove('hidden');
-  });
-};
+//   features.forEach((element) => {
+//     advertisementElement.querySelector(`.popup__feature--${element}`).classList.remove('hidden');
+//   });
+// };
 
-const renderPhotos = (advertisementElement, links) => {
-  const photoElement = advertisementElement.querySelector('.popup__photo');
-  const popupPhotos = advertisementElement.querySelector('.popup__photos');
+// const renderPhotos = (advertisementElement, links) => {
+//   const photoElement = advertisementElement.querySelector('.popup__photo');
+//   const popupPhotos = advertisementElement.querySelector('.popup__photos');
 
-  for (let index = 0; index < links.length-1; index++) {
-    const nextPhotoElement = photoElement.cloneNode();
-    popupPhotos.appendChild(nextPhotoElement);
-  }
-  const photoElements = advertisementElement.querySelectorAll('.popup__photo');
-  photoElements.forEach((element, index) => {
-    element.src = links[index];
-  });
-};
-
+//   for (let index = 0; index < links.length-1; index++) {
+//     const nextPhotoElement = photoElement.cloneNode();
+//     popupPhotos.appendChild(nextPhotoElement);
+//   }
+//   const photoElements = advertisementElement.querySelectorAll('.popup__photo');
+//   photoElements.forEach((element, index) => {
+//     element.src = links[index];
+//   });
+// };
 
 const offerTypesDict = {
   'flat' : 'Квартира',
@@ -47,10 +46,10 @@ export function createPopup(ads) {
   const guestOrdinal = getOrdinal(ads.offer.guest, ['гостя', 'гостей', 'гостей']);
   advertisementElement.querySelector('.popup__text--capacity').textContent = `${ads.offer.rooms} ${roomOrdinal} для ${ads.offer.guest} ${guestOrdinal}`;
   advertisementElement.querySelector('.popup__text--time').textContent = `Заезд после ${ads.offer.checkin}, выезд после ${ads.offer.checkout}`;
-  renderFeatures(advertisementElement, ads.offer.features);
+  // renderFeatures(advertisementElement, ads.offer.features);
   advertisementElement.querySelector('.popup__description').textContent = ads.offer.description;
   advertisementElement.querySelector('.popup__avatar').src = ads.author.avatar;
-  renderPhotos(advertisementElement, ads.offer.photos);
+  // renderPhotos(advertisementElement, ads.offer.photos);
 
   return advertisementElement;
 }
