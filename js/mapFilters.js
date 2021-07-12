@@ -3,13 +3,6 @@ const priceFilter = document.querySelector('#housing-price');
 const roomsFilter = document.querySelector('#housing-rooms');
 const guestsFilter = document.querySelector('#housing-guests');
 const mapCheckbox = document.querySelectorAll('.map__checkbox');
-const mapFilters = document.querySelectorAll('.map__filter');
-
-mapFilters.forEach((filter) => {
-  filter.addEventListener('change', (evt) => {
-
-  });
-});
 
 const resetFilters = () => {
   typeFilter.value = 'any';

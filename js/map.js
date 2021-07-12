@@ -1,6 +1,9 @@
 import { enableForm, disableForm } from './formHelpers.js';
 import { createPopup } from './card.js';
 import { getAdsData } from './getData.js';
+
+const ADS_COUNT = 10;
+
 const TOKYO = {
   lat: 35.67833,
   lng: 139.75114,
@@ -67,11 +70,22 @@ const commonPinIcon = L.icon({
   iconAnchor: [20, 40],
 });
 
-const renderSimilarPins = (array) => {
-  array.forEach((el) => {
+let markers = [];
+
+const renderPins = (array) => {
+  // удаляем старые маркеры с карты
+  markers.forEach((marker) => {
+    marker.removeFrom(map);
+  });
+  // Чистим массив
+  markers = [];
+
+  const slicedArray = array.slice(0, ADS_COUNT);
+  // Добавляем маркеры на карту
+  slicedArray.forEach((el) => {
     const lat = el.location.lat;
     const lng = el.location.lng;
-    L.marker({
+    const newMarker = L.marker({
       lat: lat,
       lng: lng,
     },
@@ -81,8 +95,10 @@ const renderSimilarPins = (array) => {
     })
       .bindPopup(createPopup(el))
       .addTo(map);
+
+    markers.push(newMarker);
   });
 };
 
 
-export { resetMap, renderSimilarPins };
+export { resetMap, renderPins };
