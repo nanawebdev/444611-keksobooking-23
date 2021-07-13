@@ -1,7 +1,7 @@
-import { showSuccessPopup, showErrorPopup  } from './resultsPopup.js';
+import { showSuccessPopup, showErrorPopup  } from './results-popup.js';
 import { resetMap } from './map.js';
-import { resetForm } from './formHelpers.js';
-import { resetFilters } from './mapFilters.js';
+import { resetForm } from './form-helpers.js';
+import { resetFilters } from './map-filters.js';
 
 const form = document.querySelector('.ad-form');
 const clearFormButton = document.querySelector('.ad-form__reset');
