@@ -32,8 +32,3 @@ form.addEventListener('submit', (evt) => {
 });
 
 clearFormButton.addEventListener('click', resetForm);
-
-// fetch('https://23.javascript.pages.academy/keksobooking/data')
-//   .then((response) => response.json())
-//   .then((advertisments) => {
-//   });
