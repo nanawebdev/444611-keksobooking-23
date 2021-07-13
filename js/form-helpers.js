@@ -37,17 +37,17 @@ const enableForm = () => {
   form.classList.remove('ad-form--disabled');
 
   formFieldsets.forEach((element) => {
-    element.removeAttribute('disabled', 'disabled');
+    element.removeAttribute('disabled');
   });
 
   mapFilters.classList.remove('map__filters--disabled');
 
   mapFiltersSelects.forEach((element) => {
-    element.removeAttribute('disabled', 'disabled');
+    element.removeAttribute('disabled');
   });
 
   mapFiltersFieldsets.forEach((element) => {
-    element.removeAttribute('disabled', 'disabled');
+    element.removeAttribute('disabled');
   });
 };
 

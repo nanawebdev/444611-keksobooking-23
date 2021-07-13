@@ -1,3 +1,4 @@
+import { isEscEvent } from './util.js';
 const errorPopup = document.querySelector('#error').content.querySelector('.error');
 const successPopup = document.querySelector('#success').content.querySelector('.success');
 
@@ -14,7 +15,8 @@ const showErrorPopup = () => {
   });
 
   document.addEventListener('keydown', (evt) => {
-    if (evt.key === 27) {
+    if (isEscEvent(evt)) {
+      evt.preventDefault();
       closeResultPopup(errorTemplate);
     }
   });
@@ -31,7 +33,8 @@ const showSuccessPopup = () => {
   document.body.appendChild(successTemplate);
 
   document.addEventListener('keydown', (evt) => {
-    if (evt.key === 27) {
+    if (isEscEvent(evt)) {
+      evt.preventDefault();
       closeResultPopup(successTemplate);
     }
   });

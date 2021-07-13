@@ -24,13 +24,7 @@ const getAdsData = () => {
     .then(onSuccess);
 };
 
-const filterByFeature = (feature, data) =>
-  data.filter((adv) => {
-    if (adv.offer.features && adv.offer.features.includes(feature)) {
-      return true;
-    }
-    return false;
-  });
+const filterByFeature = (feature, data) => data.filter((adv) => !!(adv.offer.features && adv.offer.features.includes(feature)));
 
 const renderFilterData = () => {
   let filteredData = allData;

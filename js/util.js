@@ -1,24 +1,3 @@
-const getRandomInteger = (from, to) => {
-  if (from === to) {
-    return from;
-  }
-
-  if (from >= to || from < 0) {
-    return;
-  }
-
-  return Math.floor(from + Math.random() * (to - from + 1));
-};
-
-const getRandomFloatNumber = (from, to, precision) => {
-  if (from >= to || from < 0) {
-    return from;
-  }
-
-  const randomNumber = from + Math.random() * (to - from);
-  return parseFloat(randomNumber.toFixed(precision));
-};
-
 const getOrdinal = (num, ordinals) => {
   const remainder100 = num % 100;
   const remainder10 = num % 10;
@@ -39,4 +18,6 @@ const getOrdinal = (num, ordinals) => {
   return ordinals[2];
 };
 
-export { getRandomInteger, getRandomFloatNumber, getOrdinal };
+const isEscEvent = (evt) => evt.key === 'Escape' || evt.key === 'Esc';
+
+export { getOrdinal, isEscEvent };
