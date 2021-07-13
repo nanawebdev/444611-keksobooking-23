@@ -1,5 +1,15 @@
 import { debounce } from './utils/debounce.js';
 import { renderPins } from './map.js';
+const housingTypeInput = document.querySelector('[name="housing-type"]');
+const housingPriceInput = document.querySelector('[name="housing-price"]');
+const housingRoomsInput = document.querySelector('[name="housing-rooms"]');
+const housingGuestsInput = document.querySelector('[name="housing-guests"]');
+const wifiInput = document.querySelector('[value="wifi"]');
+const dishwasherInput = document.querySelector('[value="dishwasher"]');
+const parkingInput = document.querySelector('[value="parking"]');
+const washerInpiut = document.querySelector('[value="washer"]');
+const elevatorInput = document.querySelector('[value="elevator"]');
+const conditionerInput = document.querySelector('[value="conditioner"]');
 
 let allData = [];
 
@@ -13,17 +23,6 @@ const getAdsData = () => {
     .then((response) => response.json())
     .then(onSuccess);
 };
-
-const housingTypeInput = document.querySelector('[name="housing-type"]');
-const housingPriceInput = document.querySelector('[name="housing-price"]');
-const housingRoomsInput = document.querySelector('[name="housing-rooms"]');
-const housingGuestsInput = document.querySelector('[name="housing-guests"]');
-const wifiInput = document.querySelector('[value="wifi"]');
-const dishwasherInput = document.querySelector('[value="dishwasher"]');
-const parkingInput = document.querySelector('[value="parking"]');
-const washerInpiut = document.querySelector('[value="washer"]');
-const elevatorInput = document.querySelector('[value="elevator"]');
-const conditionerInput = document.querySelector('[value="conditioner"]');
 
 const filterByFeature = (feature, data) =>
   data.filter((adv) => {
