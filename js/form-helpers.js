@@ -1,3 +1,6 @@
+import { resetFilters } from './reset-filters.js';
+import { resetMap } from './map.js';
+
 const form = document.querySelector('.ad-form');
 const formFieldsets = form.querySelectorAll('fieldset');
 const mapFilters = document.querySelector('.map__filters');
@@ -8,7 +11,6 @@ const typeSelect = document.querySelector('#type');
 const priceInput = document.querySelector('#price');
 const roomNumberInput = document.querySelector('#room_number');
 const capacityInput = document.querySelector('#capacity');
-const addressInput = document.querySelector('#address');
 const timeinSelect = document.querySelector('#timein');
 const timeoutSelect = document.querySelector('#timeout');
 const descriptionInput = document.querySelector('#description');
@@ -57,7 +59,6 @@ const resetForm = () => {
   priceInput.value = '';
   roomNumberInput.value = '1';
   capacityInput.value = '1';
-  addressInput.value = '35.67833, 139.75114';
   timeinSelect.value = '12:00';
   timeoutSelect.value = '12:00';
   descriptionInput.value = '';
@@ -65,6 +66,9 @@ const resetForm = () => {
   featuresCheckboxes.forEach((checkbox) => {
     checkbox.checked = false;
   });
+
+  resetMap();
+  resetFilters();
 };
 
 export { disableForm, enableForm, resetForm };

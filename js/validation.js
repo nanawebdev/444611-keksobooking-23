@@ -1,8 +1,18 @@
 const houseTypeSelect = document.querySelector('#type');
 const priceInput = document.querySelector('#price');
 const titleInput = document.querySelector('#title');
+const roomQuantity = document.querySelector('#room_number');
+const capacity = document.querySelector('#capacity');
+const capacityOptions = capacity.querySelectorAll('option');
 
-const typesDictionary = {
+const AvailableCapacityDict = {
+  '1': ['1'],
+  '2': ['2', '1'],
+  '3': ['3', '2', '1'],
+  '100': ['0'],
+};
+
+const MinPriceDict = {
   'flat': '1000',
   'hotel': '3000',
   'house': '5000',
@@ -12,7 +22,7 @@ const typesDictionary = {
 
 const onHouseTypeChange = () => {
   const currentType = houseTypeSelect.value;
-  const minPrice = typesDictionary[currentType];
+  const minPrice = MinPriceDict[currentType];
   priceInput.setAttribute('min', minPrice);
   priceInput.setAttribute('placeholder', minPrice);
 };
@@ -47,19 +57,8 @@ titleInput.addEventListener('invalid', () => {
   }
 });
 
-const roomQuantity = document.querySelector('#room_number');
-const capacity = document.querySelector('#capacity');
-const capacityOptions = capacity.querySelectorAll('option');
-
-const availableCapacityDictionary = {
-  '1': ['1'],
-  '2': ['2', '1'],
-  '3': ['3', '2', '1'],
-  '100': ['0'],
-};
-
 const onRoomQuantityChange = () => {
-  const availableCapacity = availableCapacityDictionary[roomQuantity.value];
+  const availableCapacity = AvailableCapacityDict[roomQuantity.value];
 
   const optionToSelect = availableCapacity[0];
 

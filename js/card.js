@@ -1,5 +1,13 @@
 import { getOrdinal } from './util.js';
 
+const OfferTypesDict = {
+  'flat' : 'Квартира',
+  'bungalow' : 'Бунгало',
+  'house' : 'Дом',
+  'palace' : 'Дворец',
+  'hotel' : 'Отель',
+};
+
 const cardTemplate = document.querySelector('#card').content.querySelector('.popup');
 
 const renderFeatures = (advertisementElement, features) => {
@@ -28,21 +36,13 @@ const renderPhotos = (advertisementElement, links) => {
   });
 };
 
-const offerTypesDict = {
-  'flat' : 'Квартира',
-  'bungalow' : 'Бунгало',
-  'house' : 'Дом',
-  'palace' : 'Дворец',
-  'hotel' : 'Отель',
-};
-
 export function createPopup(adv) {
   const advertisementElement = cardTemplate.cloneNode(true);
 
   advertisementElement.querySelector('.popup__title').textContent = adv.offer.title;
   advertisementElement.querySelector('.popup__text--address').textContent = adv.offer.address;
   advertisementElement.querySelector('.popup__text--price').textContent = adv.offer.price;
-  advertisementElement.querySelector('.popup__type').textContent = offerTypesDict[adv.offer.type];
+  advertisementElement.querySelector('.popup__type').textContent = OfferTypesDict[adv.offer.type];
 
   if (adv.offer.rooms && adv.offer.guests) {
     const roomOrdinal = getOrdinal(adv.offer.rooms, ['комната', 'комнаты', 'комнат']);

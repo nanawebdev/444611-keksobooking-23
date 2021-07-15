@@ -8,6 +8,7 @@ const TOKYO = {
   lat: 35.67833,
   lng: 139.75114,
 };
+
 const addressInput = document.querySelector('#address');
 const valuesTokyo = Object.values(TOKYO).join(', ');
 
@@ -50,10 +51,11 @@ mainPin.on('moveend', (evt) => {
   const latLng = evt.target.getLatLng();
   const lat = latLng.lat;
   const lng = latLng.lng;
-  addressInput.value = `${lat.toFixed(5)} ${lng.toFixed(5)}`;
+  addressInput.value = `${lat.toFixed(5)}, ${lng.toFixed(5)}`;
 });
 
 const resetMap = () => {
+  addressInput.value = valuesTokyo;
   mainPin.setLatLng({
     lat: TOKYO.lat,
     lng: TOKYO.lng,

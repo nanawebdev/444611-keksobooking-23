@@ -1,5 +1,6 @@
 import { debounce } from './utils/debounce.js';
 import { renderPins } from './map.js';
+import { showErrorPopup } from './results-popup.js';
 const housingTypeInput = document.querySelector('[name="housing-type"]');
 const housingPriceInput = document.querySelector('[name="housing-price"]');
 const housingRoomsInput = document.querySelector('[name="housing-rooms"]');
@@ -11,23 +12,32 @@ const washerInpiut = document.querySelector('[value="washer"]');
 const elevatorInput = document.querySelector('[value="elevator"]');
 const conditionerInput = document.querySelector('[value="conditioner"]');
 
-let allData = [];
+let advertisments = [];
 
 const onSuccess = (data) => {
-  allData = data;
-  renderPins(allData);
+  advertisments = data;
+  renderPins(advertisments);
 };
 
 const getAdsData = () => {
   fetch('https://23.javascript.pages.academy/keksobooking/data')
-    .then((response) => response.json())
-    .then(onSuccess);
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw response;
+      }
+    })
+    .then(onSuccess)
+    .catch(()=> {
+      showErrorPopup('Не удалось загрузить объявления');
+    });
 };
 
 const filterByFeature = (feature, data) => data.filter((adv) => !!(adv.offer.features && adv.offer.features.includes(feature)));
 
 const renderFilterData = () => {
-  let filteredData = allData;
+  let filteredData = advertisments;
   // фильтр по типу жилья
   filteredData = filteredData.filter((adv) => adv.offer.type === housingTypeInput.value || housingTypeInput.value === 'any');
   // Фильтр по цене
